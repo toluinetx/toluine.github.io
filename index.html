@@ -18,7 +18,70 @@ img {
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+var lines = [
+  // Credits to ster, gamingmedley, darkness3560, JettTheMedic, and many other redditors
+  "Born in another country",
+  "Has been baptized",
+  "Has 5 different letters in their name",
+  "Stays in the east",
+  "Hasn’t gotten Covid yet",
+  "Can speak more than 2 languages fluently",
+  "Exercised today",
+  "Has a pet",
+  "Doesn’t have Instagram",
+  "Has travelled overseas this year",
+  "Is an only child",
+  "Owns an NFT",
+  "Cannot snap their fingers",
+  "Drove to church today",
+  "Born in January",
+  "Has had a surgery before	",
+  "Has a coffee machine at home",
+  "Has given tuition at CSC",
+  "Goes to the office more often than working from home",
+  "Has signed up for YA camp",
+  "Sleeps past 10 am on Saturdays",
+  "Has a Disney plus account",
+  "Does not use a MacBook",
+  "Has allergies",
+  "Uses a Samsung Phone",
+];
 
+// Fisher-Yates Shuffle
+var shuffle = function(array) {
+  var m = array.length, t, i;
+  // While there remain elements to shuffle
+  while (m) {
+    // Pick a remaining element
+    i = Math.floor(Math.random() * m--);
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+};
+// Did I just steal this code from Wikipedia, or something?
+
+var insertToCard = function(array) {
+  var slot = 25;
+  while (slot) {
+    if (slot == 13) {
+      slot--;
+    } else {
+    $("label:nth-child(" + slot + ") .mark span").text(array[slot - 1]);
+    slot--;
+    }
+  }
+};
+
+$(document).ready(function() {
+  var shuffledLines = shuffle(lines);
+  insertToCard(shuffledLines); // #hellaswag
+  console.log(shuffledLines)
+  });
+</script>
 
 <style>
 body {
@@ -119,51 +182,51 @@ small {
   <div class="grid">
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Was born in another country </span></div>
+      <div class="mark"><span>1</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has been baptized</span></div>
+      <div class="mark"><span>2</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has 5 different letters in their name</span></div>
+      <div class="mark"><span>3</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Stays in the east	</span></div>
+      <div class="mark"><span>4</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Hasn’t gotten Covid yet</span></div>
+      <div class="mark"><span>5</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Can speak more than 2 languages fluently</span></div>
+      <div class="mark"><span>6</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Exercised today	</span></div>
+      <div class="mark"><span>7</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has a pet</span></div>
+      <div class="mark"><span>8</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Doesn’t have Instagram	</span></div>
+      <div class="mark"><span>9</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has travelled overseas this year</span></div>
+      <div class="mark"><span>10</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Is an only child</span></div>
+      <div class="mark"><span>11</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Owns an NFT</span></div>
+      <div class="mark"><span>12</span></div>
     </label>
     <label>
       <input type="checkbox">
@@ -171,55 +234,55 @@ small {
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Cannot snap their fingers</span></div>
+      <div class="mark"><span>14</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Drove to church today</span></div>
+      <div class="mark"><span>15</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Born in January</span></div>
+      <div class="mark"><span>16</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has had a surgery before	</span></div>
+      <div class="mark"><span>17</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has a coffee machine at home</span></div>
+      <div class="mark"><span>18</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has given tuition at CSC</span></div>
+      <div class="mark"><span>19</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Goes to the office more often than working from home</span></div>
+      <div class="mark"><span>20</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has signed up for YA camp</span></div>
+      <div class="mark"><span>21</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Sleeps past 10 am on Saturdays </span></div>
+      <div class="mark"><span>22</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has a Disney plus account </span></div>
+      <div class="mark"><span>23</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Does not use a MacBook </span></div>
+      <div class="mark"><span>24</span></div>
     </label>
     <label>
       <input type="checkbox">
-      <div class="mark"><span>Has allergies</span></div>
+      <div class="mark"><span>25</span></div>
     </label>
   </div>
 
- <input size="65" Placeholder="Write notes here" type="text"> </input>
+ <input size="72.99rem" Placeholder="Enter notes here" type="text">          </input>
 </main>
 </body>
 
