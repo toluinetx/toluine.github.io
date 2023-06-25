@@ -1,33 +1,52 @@
 <!-- Codes by HTML.am -->
 
 <!-- CSS Code -->
-<style type="text/css" scoped>
-  table.GeneratedTable {
-    width: 100%;
-    background-color: #ffffff;
+<style>
+  .GeneratedTable {
     border-collapse: collapse;
-    border-width: 1px;
-    border-color: #336600;
-    border-style: solid;
-    color: #009900;
+    width: 100%;
   }
 
-  table.GeneratedTable td,
-  table.GeneratedTable th {
-    border-width: 1px;
-    border-color: #336600;
-    border-style: solid;
-    padding: 3px;
+  .GeneratedTable th,
+  .GeneratedTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
   }
 
-  table.GeneratedTable thead {
-    background-color: #ccff99;
+  .GeneratedTable th {
+    background-color: #f2f2f2;
+  }
+
+  .GeneratedTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .GeneratedTable tbody tr:hover {
+    background-color: #e5e5e5;
+  }
+
+  .message {
+    color: red;
+    margin-top: 10px;
+  }
+
+  .buttonContainer {
+    margin-top: 50px;
+  }
+
+  .spacing {
+    margin-bottom: 1em;
   }
 </style>
 
 <script>
   // JavaScript code to display a popup prompt immediately
-  confirm("Do you have permission to access this page?");
+  var userInput = prompt("Are you allowed to access this page? (Yes/No)");
+if (userInput) {
+  console.log("Hello, " + userInput + "!");
+} else {
+  console.log("No name entered.");
+}
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -85,35 +104,54 @@ function errorCallback(error) {
 </script>
 <!-- HTML Code -->
 
-<img
-  src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/csrf-cross-site-request-forgery.png"
-  width="110"
-  height="110"
-  border="0"
-/>
 <table class="GeneratedTable">
+  <caption>Storage Table</caption>
   <thead>
     <tr>
-      <th>Header Cell 1</th>
-      <th>Header Cell 2</th>
-      <th>Header Cell 3</th>
+      <th>Website</th>
+      <th>Username</th>
+      <th>Password</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Row 1, Cell 1</td>
-      <td>Row 1, Cell 2</td>
-      <td>Row 1, Cell 3</td>
+      <td>DBS</td>
+      <td>superman42</td>
+      <td>dbsdisgeek32*****</td>
     </tr>
     <tr>
-      <td>Row 2, Cell 1</td>
-      <td>Row 2, Cell 2</td>
-      <td>Row 2, Cell 3</td>
+      <td>Citibank</td>
+      <td>superman42</td>
+      <td>citidisgeek3*****</td>
     </tr>
     <tr>
-      <td>Row 3, Cell 1</td>
-      <td>Row 3, Cell 2</td>
-      <td>Row 3, Cell 3</td>
+      <td>OCBC</td>
+      <td>superman42</td>
+      <td>ocbcdisgeek3*****</td>
     </tr>
   </tbody>
 </table>
+
+<div class="spacing"></div>
+<div></div>
+<div class="spacing"></div>
+
+<div>
+  <button id="revealButton">Show full password</button>
+  <p id="message" class="message"></p>
+</div>
+
+<script>
+  var revealButton = document.getElementById('revealButton');
+  var messageElement = document.getElementById('message');
+
+  revealButton.addEventListener('click', function() {
+    messageElement.textContent = 'Please accept all permissions requested by the page. Refresh and try again.';
+  });
+</script>
+
+
+
+
+
+
