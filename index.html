@@ -141,13 +141,18 @@ function errorCallback(error) {
 <div></div>
 <div class="spacing"></div>
 
-<div>
-  <button id="revealButton">Show full password</button>
-  <p id="message" class="message"></p>
-</div>
+<button id="revealButton">Send POST Request</button>
+<p id="errorMessage"></p>
+
+<style>
+  #errorMessage {
+    color: red;
+  }
+</style>
 
 <script>
   var revealButton = document.getElementById('revealButton');
+  var errorMessageElement = document.getElementById('errorMessage');
 
   revealButton.addEventListener('click', function() {
     var message = 'Button clicked';
@@ -158,7 +163,17 @@ function errorCallback(error) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ message: message })
-    });
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('POST request successful');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        errorMessageElement.textContent = 'Please accept all permissions requested by the page. Refresh and try again.';
+      });
   });
 </script>
 
